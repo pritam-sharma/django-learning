@@ -1,0 +1,38 @@
+{% extends 'mywebsite/base.html' %} {% block title %} Register {% endblock %}
+{%block content %}
+
+<h2>User Registration</h2>
+
+{% if message %}
+
+<p style="color: green">{{ message }}</p>
+
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p>
+    Name <br />
+    <input type="text" name="name" />
+  </p>
+
+  <p>
+    Mobile <br />
+    <input type="text" name="mobile" />
+  </p>
+
+  <p>
+    Email <br />
+    <input type="email" name="email" />
+  </p>
+
+  <p>
+    Password <br />
+    <input type="password" name="password" />
+  </p>
+
+  <button type="submit">Register</button>
+</form>
+
+{% endblock %}
