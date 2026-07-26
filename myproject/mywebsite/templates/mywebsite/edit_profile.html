@@ -1,0 +1,40 @@
+{% extends 'mywebsite/base.html' %} {% block title %} Edit Profile {% endblock%} 
+{% block content %}
+
+<h2>Edit Profile</h2>
+
+{% if message %}
+
+<p style="color: green">{{ message }}</p>
+
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p>
+    Name <br />
+
+    <input type="text" name="name" value="{{ user.name }}" />
+  </p>
+
+  <p>
+    Mobile <br />
+
+    <input type="text" name="mobile" value="{{ user.mobile }}" />
+  </p>
+
+  <p>
+    Email <br />
+
+    <input type="email" value="{{ user.email }}" readonly />
+  </p>
+
+  <button type="submit">Update Profile</button>
+</form>
+
+<br />
+
+<a href="/dashboard/"> Back to Dashboard </a>
+
+{% endblock %}

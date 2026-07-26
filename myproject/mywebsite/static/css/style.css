@@ -92,3 +92,30 @@ footer {
 
   margin-bottom: 10px;
 }
+ul {
+  list-style: none;
+
+  padding: 0;
+}
+
+ul li {
+  margin: 15px 0;
+}
+
+ul li a {
+  text-decoration: none;
+
+  color: white;
+
+  background: #2980b9;
+
+  padding: 10px 20px;
+
+  display: inline-block;
+
+  border-radius: 5px;
+}
+
+ul li a:hover {
+  background: #1f6690;
+}

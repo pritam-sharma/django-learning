@@ -1,0 +1,26 @@
+{% extends 'mywebsite/base.html' %} {% block title %} Login {% endblock %}
+{%block content %}
+
+<h2>User Login</h2>
+
+{% if message %}
+<p style="color: red">{{ message }}</p>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p>
+    Email <br />
+    <input type="email" name="email" />
+  </p>
+
+  <p>
+    Password <br />
+    <input type="password" name="password" />
+  </p>
+
+  <button type="submit">Login</button>
+</form>
+
+{% endblock %}

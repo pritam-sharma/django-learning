@@ -1,0 +1,27 @@
+{% extends 'mywebsite/base.html' %} {% block title %} My Profile {% endblock %}
+{% block content %}
+
+<h2>My Profile</h2>
+
+<hr />
+
+<p>
+  <b>Name :</b>
+  {{ user.name }}
+</p>
+
+<p>
+  <b>Mobile :</b>
+  {{ user.mobile }}
+</p>
+
+<p>
+  <b>Email :</b>
+  {{ user.email }}
+</p>
+
+<hr />
+
+<a href="/dashboard/"> Back to Dashboard </a>
+
+{% endblock %}
