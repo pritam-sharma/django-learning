@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Service
 from .models import User
+from .decorators import login_required
 # Create your views here.
 def home(request):
     return render(request, 'mywebsite/home.html')
@@ -78,6 +79,7 @@ def login(request):
 
     return render(request, "mywebsite/login.html")
 
+@login_required
 def dashboard(request):
 
     if "user_id" not in request.session:
@@ -92,6 +94,7 @@ def dashboard(request):
     return render(request,
                   "mywebsite/dashboard.html",
                   context)
+@login_required
 def profile(request):
 
     # Check if user is logged in
@@ -115,7 +118,7 @@ def profile(request):
     return render(request,
                   "mywebsite/profile.html",
                   context)
-
+@login_required
 def edit_profile(request):
 
     # Check Login
@@ -156,6 +159,7 @@ def edit_profile(request):
             "user": user
         }
     )
+@login_required
 def change_password(request):
 
     # Check Login
@@ -206,6 +210,7 @@ def change_password(request):
         )
 
     return render(request, "mywebsite/change_password.html")
+
 def logout(request):
 
     # Remove all session data
