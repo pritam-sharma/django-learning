@@ -1,27 +1,51 @@
 {% extends 'mywebsite/base.html' %} {% block title %} My Profile {% endblock %}
-{% block content %}
+{%block content %}
 
-<h2>My Profile</h2>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">My Profile</h3>
+      </div>
 
-<hr />
+      <div class="card-body text-center">
+        <i
+          class="bi bi-person-circle text-primary"
+          style="font-size: 110px"
+        ></i>
 
-<p>
-  <b>Name :</b>
-  {{ user.name }}
-</p>
+        <hr />
 
-<p>
-  <b>Mobile :</b>
-  {{ user.mobile }}
-</p>
+        <table class="table table-bordered">
+          <tr>
+            <th width="30%">Name</th>
 
-<p>
-  <b>Email :</b>
-  {{ user.email }}
-</p>
+            <td>{{ user.name }}</td>
+          </tr>
 
-<hr />
+          <tr>
+            <th>Email</th>
 
-<a href="/dashboard/"> Back to Dashboard </a>
+            <td>{{ user.email }}</td>
+          </tr>
+
+          <tr>
+            <th>Mobile</th>
+
+            <td>{{ user.mobile }}</td>
+          </tr>
+        </table>
+
+        <a href="{% url 'edit_profile' %}" class="btn btn-primary">
+          Edit Profile
+        </a>
+
+        <a href="{% url 'change_password' %}" class="btn btn-warning">
+          Change Password
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

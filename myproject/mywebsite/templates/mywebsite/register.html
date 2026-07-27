@@ -1,38 +1,48 @@
 {% extends 'mywebsite/base.html' %} {% block title %} Register {% endblock %}
 {%block content %}
 
-<h2>User Registration</h2>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Create Account</h2>
 
-{% if message %}
+    <p>Join IT Institute</p>
 
-<p style="color: green">{{ message }}</p>
+    <form method="POST">
+      {% csrf_token %}
 
-{% endif %}
+      <div class="mb-3">
+        <label>Name</label>
 
-<form method="POST">
-  {% csrf_token %}
+        <input type="text" name="name" class="form-control" required />
+      </div>
 
-  <p>
-    Name <br />
-    <input type="text" name="name" />
-  </p>
+      <div class="mb-3">
+        <label>Mobile</label>
 
-  <p>
-    Mobile <br />
-    <input type="text" name="mobile" />
-  </p>
+        <input type="text" name="mobile" class="form-control" required />
+      </div>
 
-  <p>
-    Email <br />
-    <input type="email" name="email" />
-  </p>
+      <div class="mb-3">
+        <label>Email</label>
 
-  <p>
-    Password <br />
-    <input type="password" name="password" />
-  </p>
+        <input type="email" name="email" class="form-control" required />
+      </div>
 
-  <button type="submit">Register</button>
-</form>
+      <div class="mb-3">
+        <label>Password</label>
+
+        <input type="password" name="password" class="form-control" required />
+      </div>
+
+      <button class="btn btn-success w-100 btn-login">Create Account</button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account?
+
+      <a href="{% url 'login' %}"> Login </a>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

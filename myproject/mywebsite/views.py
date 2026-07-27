@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Service
 from .models import User
 from .decorators import login_required
+from django.contrib import messages
 # Create your views here.
 def home(request):
     return render(request, 'mywebsite/home.html')
@@ -118,103 +119,64 @@ def profile(request):
     return render(request,
                   "mywebsite/profile.html",
                   context)
+
 @login_required
 def edit_profile(request):
 
-    # Check Login
-    if "user_id" not in request.session:
-        return redirect("login")
+    user = User.objects.get(
+        user_id=request.session["user_id"]
+    )
 
-    # Logged in user id
-    user_id = request.session["user_id"]
-
-    # Fetch user
-    user = User.objects.get(user_id=user_id)
-
-    # If Update Button Clicked
     if request.method == "POST":
 
-        user.name = request.POST.get("name")
+        user.name = request.POST["name"]
 
-        user.mobile = request.POST.get("mobile")
+        user.mobile = request.POST["mobile"]
 
         user.save()
 
-        # Update session so dashboard shows latest name
         request.session["name"] = user.name
 
-        return render(
-            request,
-            "mywebsite/edit_profile.html",
-            {
-                "user": user,
-                "message": "Profile Updated Successfully"
-            }
-        )
+        return redirect("profile")
 
     return render(
         request,
         "mywebsite/edit_profile.html",
-        {
-            "user": user
-        }
+        {"user": user}
     )
 @login_required
 def change_password(request):
 
-    # Check Login
-    if "user_id" not in request.session:
-        return redirect("login")
-
-    # Fetch Logged-in User
-    user = User.objects.get(user_id=request.session["user_id"])
-
     if request.method == "POST":
 
-        current_password = request.POST.get("current_password")
-        new_password = request.POST.get("new_password")
-        confirm_password = request.POST.get("confirm_password")
+        current = request.POST["current_password"]
+        new = request.POST["new_password"]
+        confirm = request.POST["confirm_password"]
 
-        # Check Current Password
-        if user.password != current_password:
-
-            return render(
-                request,
-                "mywebsite/change_password.html",
-                {
-                    "message": "Current Password is Incorrect"
-                }
-            )
-
-        # Check New Password & Confirm Password
-        if new_password != confirm_password:
-
-            return render(
-                request,
-                "mywebsite/change_password.html",
-                {
-                    "message": "New Password and Confirm Password do not match"
-                }
-            )
-
-        # Update Password
-        user.password = new_password
-        user.save()
-
-        return render(
-            request,
-            "mywebsite/change_password.html",
-            {
-                "success": "Password Changed Successfully"
-            }
+        user = User.objects.get(
+            user_id=request.session["user_id"]
         )
+
+        if user.password != current:
+            # Show error message
+            ...
+
+        elif new != confirm:
+            # Show error message
+            ...
+
+        else:
+            user.password = new
+            user.save()
+            # Show success message
+            ...
 
     return render(request, "mywebsite/change_password.html")
 
 def logout(request):
 
-    # Remove all session data
     request.session.flush()
 
-    # Redirect to Login Page
+    messages.success(request, "Logged out successfully.")
+
     return redirect("login")

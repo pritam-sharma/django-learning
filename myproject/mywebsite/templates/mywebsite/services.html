@@ -1,14 +1,22 @@
 {% extends 'mywebsite/base.html' %} {% block title %} Services {% endblock %}
 {%block content %}
 
-<h2>Our Services</h2>
+<h1 class="text-center fw-bold mb-5">Our Services</h1>
 
-{% for service in services %}
+<div class="row">
+  {% for service in services %}
 
-<div class="service">
-  <h3>{{ service.service_name }}</h3>
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title">{{ service.service_name }}</h4>
 
-  <p>{{ service.service_disc }}</p>
+        <p class="card-text">{{ service.service_disc }}</p>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
 </div>
 
-{% endfor %} {% endblock %}
+{% endblock %}

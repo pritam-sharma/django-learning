@@ -1,26 +1,60 @@
 {% extends 'mywebsite/base.html' %} {% block title %} Login {% endblock %}
 {%block content %}
 
-<h2>User Login</h2>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Welcome Back 👋</h2>
 
-{% if message %}
-<p style="color: red">{{ message }}</p>
-{% endif %}
+    <p>Login to continue</p>
 
-<form method="POST">
-  {% csrf_token %}
+    <form method="POST">
+      {% csrf_token %}
 
-  <p>
-    Email <br />
-    <input type="email" name="email" />
-  </p>
+      <div class="mb-3">
+        <label>Email</label>
 
-  <p>
-    Password <br />
-    <input type="password" name="password" />
-  </p>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-envelope-fill"></i>
+          </span>
 
-  <button type="submit">Login</button>
-</form>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Password</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-lock-fill"></i>
+          </span>
+
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 btn-login">Login</button>
+    </form>
+
+    <div class="auth-footer">
+      Don't have an account?
+
+      <a href="{% url 'register' %}"> Register </a>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

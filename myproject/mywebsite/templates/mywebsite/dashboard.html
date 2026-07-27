@@ -1,34 +1,102 @@
 {% extends 'mywebsite/base.html' %} {% block title %} Dashboard {% endblock %}
-{% block content %}
+{%block content %}
 
-<h2>Dashboard</h2>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
 
-<hr />
+    <div class="col-lg-3 col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Dashboard Menu</h5>
+        </div>
 
-<h3>Welcome {{ name }} 👋</h3>
+        <div class="list-group list-group-flush">
+          <a
+            href="{% url 'dashboard' %}"
+            class="list-group-item list-group-item-action"
+          >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+          </a>
 
-<p>You have successfully logged in.</p>
+          <a
+            href="{% url 'profile' %}"
+            class="list-group-item list-group-item-action"
+          >
+            <i class="bi bi-person"></i>
+            My Profile
+          </a>
 
-<hr />
+          <a
+            href="{% url 'edit_profile' %}"
+            class="list-group-item list-group-item-action"
+          >
+            <i class="bi bi-pencil-square"></i>
+            Edit Profile
+          </a>
 
-<h3>Dashboard Menu</h3>
+          <a
+            href="{% url 'change_password' %}"
+            class="list-group-item list-group-item-action"
+          >
+            <i class="bi bi-lock"></i>
+            Change Password
+          </a>
 
-<ul>
-  <li>
-    <a href="/profile/"> My Profile </a>
-  </li>
+          <a
+            href="{% url 'logout' %}"
+            class="list-group-item list-group-item-action text-danger"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </div>
 
-  <li>
-    <a href="/edit-profile/"> Edit Profile </a>
-  </li>
+    <!-- Main Content -->
 
-  <li>
-    <a href="/change-password/"> Change Password </a>
-  </li>
+    <div class="col-lg-9 col-md-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h2>Welcome {{ request.session.name }} 👋</h2>
 
-  <li>
-    <a href="/logout/"> Logout </a>
-  </li>
-</ul>
+          <p class="text-muted">
+            You have successfully logged in to the IT Institute Portal.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card text-center p-4 h-100">
+            <i class="bi bi-person-circle display-4 text-primary"></i>
+
+            <h4 class="mt-3">My Profile</h4>
+
+            <p>View your personal information.</p>
+
+            <a href="{% url 'profile' %}" class="btn btn-primary"> Open </a>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card text-center p-4 h-100">
+            <i class="bi bi-gear-fill display-4 text-success"></i>
+
+            <h4 class="mt-3">Settings</h4>
+
+            <p>Update profile and password.</p>
+
+            <a href="{% url 'edit_profile' %}" class="btn btn-success">
+              Open
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

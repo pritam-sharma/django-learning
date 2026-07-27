@@ -1,8 +1,30 @@
 {% extends 'mywebsite/base.html' %} {% block title %} About {% endblock %}
 {%block content %}
 
-<h2>About Us</h2>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h1 class="fw-bold mb-4">About Our Institute</h1>
 
-<p>We provide quality IT training.</p>
+      <p class="lead">
+        We provide industry-oriented training in Python, Django, Full Stack
+        Development and Web Technologies.
+      </p>
+
+      <p>
+        Our mission is to make students job-ready through practical learning,
+        live projects and interview preparation.
+      </p>
+
+      <a href="{% url 'contact' %}" class="btn btn-primary mt-3">
+        Contact Us
+      </a>
+    </div>
+
+    <div class="col-lg-6 text-center">
+      <i class="bi bi-mortarboard-fill display-1 text-primary"></i>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

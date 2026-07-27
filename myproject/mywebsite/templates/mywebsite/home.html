@@ -1,8 +1,86 @@
 {% extends 'mywebsite/base.html' %} {% block title %} Home {% endblock %}
-{%block content %}
+{%block content%}
 
-<h2>Welcome to IT Institute</h2>
+<!-- Hero Section -->
 
-<p>Learn Python, Java, Django and React from experienced trainers.</p>
+<section class="hero-section text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Learn Python & Django</h1>
+
+    <p class="lead mb-4">
+      Build Real-World Projects and Become a Full Stack Developer.
+    </p>
+
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">
+      Get Started
+    </a>
+
+    <a href="{% url 'services' %}" class="btn btn-outline-primary btn-lg">
+      Our Services
+    </a>
+  </div>
+</section>
+
+<!-- Features -->
+
+<section class="mt-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card p-4 h-100">
+        <i class="bi bi-laptop display-4 text-primary"></i>
+
+        <h4 class="mt-3">Live Projects</h4>
+
+        <p>Learn by building real-world applications using Django.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card p-4 h-100">
+        <i class="bi bi-person-workspace display-4 text-success"></i>
+
+        <h4 class="mt-3">Expert Faculty</h4>
+
+        <p>Learn from experienced software developers.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card p-4 h-100">
+        <i class="bi bi-award display-4 text-warning"></i>
+
+        <h4 class="mt-3">Placement Support</h4>
+
+        <p>Resume preparation and interview guidance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+
+<section class="mt-5">
+  <div class="card p-5">
+    <h2 class="text-center mb-4">Why Choose Our Institute?</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">✔ Industry-Oriented Training</li>
+
+          <li class="list-group-item">✔ Hands-on Practical Sessions</li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">✔ Affordable Course Fees</li>
+
+          <li class="list-group-item">✔ Placement Assistance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}
