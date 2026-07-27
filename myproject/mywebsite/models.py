@@ -20,12 +20,12 @@ class User(models.Model):
 
     mobile = models.CharField(max_length=20)
 
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
 
     password = models.CharField(max_length=100)
 
     class Meta:
-        db_table = "user"
+        db_table = "users"
         managed = False
 
     def __str__(self):
