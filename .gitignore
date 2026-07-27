@@ -1,34 +1,27 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 
 # Virtual Environment
 venv/
-.venv/
 env/
 
-# SQLite
+# Database
 db.sqlite3
 
-# Django
-*.log
+# Static
+staticfiles/
+
+# Media
 media/
 
-# VS Code
-.vscode/
-
-# PyCharm
-.idea/
-
-# Windows
-Thumbs.db
-Desktop.ini
-
-# Python Environment
+# Environment Variables
 .env
 
-# Distribution
-build/
-dist/
-*.egg-info/
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
