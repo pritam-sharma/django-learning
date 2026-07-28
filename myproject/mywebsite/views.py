@@ -29,26 +29,29 @@ def register(request):
 
     if request.method == "POST":
 
-        name = request.POST.get("name")
-        mobile = request.POST.get("mobile")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        name = request.POST["name"]
+        mobile = request.POST["mobile"]
+        email = request.POST["email"]
+        password = request.POST["password"]
 
-        user = User(
+        # Check if email already exists
+        if User.objects.filter(email=email).exists():
+
+            messages.error(request, "Email already registered.")
+            return redirect("register")
+
+        User.objects.create(
             name=name,
             mobile=mobile,
             email=email,
             password=password
         )
 
-        user.save()
+        messages.success(request, "Registration successful! Please login.")
 
-        return render(request, "mywebsite/register.html", {
-            "message": "Registration Successful"
-        })
+        return redirect("login")
 
-    return render(request, "mywebsite/register.html")
-    
+    return render(request, "mywebsite/register.html")  
 def login(request):
 
     # If user is already logged in, send them to dashboard
